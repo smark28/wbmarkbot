@@ -49,13 +49,13 @@
 							on:{
 								onItemClick:function(){
 								    let data = {
-										warehouse: $$("warehouse").getValues(),
-										box_type: $$("box_type").getValues(),    
-										coefficient: $$("coefficient").getValues(),
-										date_from: $$("date_from").getValues(),
-										date_to: $$("date_to").getValues()
+										warehouse: $$("warehouse").getText(),
+										box_type: $$("box_type").getValue(),    
+										coefficient: $$("coefficient").getValue(),
+										date_from: $$("date_from").getText(),
+										date_to: $$("date_to").getText()
 									}
-									webix.message("OnClick")
+									webix.message(JSON.stringify(data))
 									tg.sendData(JSON.stringify(data));
 									tg.close();
 								}
