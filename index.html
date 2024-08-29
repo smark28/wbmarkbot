@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+	    <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <link rel="stylesheet" href="codebase/webix.css" type="text/css" charset="utf-8">
         <script src="codebase/webix.js" type="text/javascript" charset="utf-8"></script>
     </head>
@@ -8,39 +9,49 @@
         <script type="text/javascript" charset="utf-8">
 			webix.ready(function(){
 				var warehouses_data = [
-				  {id:1,value:"Item 1"},
-				  {id:2,value:"Item 2"},
-				  {id:3,value:"Item 3"}
+				  {id: 1, value: "Item 1"},
+				  {id: 2, value: "Item 2"},
+				  {id: 3, value: "Item 3"}
 				];
 
 				webix.ui({
 				  view:"form",
-				  elementsConfig:{ labelWidth:100 },
+				  elementsConfig: {labelWidth: 100},
 				  cols:[
-					{ rows:[
-					  { view:"combo", label:"Склад", options:warehouses_data, value:0 },
-					  { view:"radio", label:"Тип упаковки", labelPosition:"left", options:
-						[
-							{ id:"1", value:"Короба" }, 
-							{ id:"2", value:"Монопаллеты" }, 
-						],
-						value:"1"
-					  },
-					  { view:"counter", label:"Коэфф, <=", value:0, min:0, max:20, step:1},
-					  {
-						view:"datepicker",
-						id:"date_from",
-						label:"Дата с",
-						// stringResult:true,
-						value:new Date(2010,4,3)
-					  },
-					  {
-						view:"datepicker",
-						id:"date_to",
-						label:"Дата по",
-						// stringResult:true,
-						value:new Date(2010,4,3)
-					  },
+					{ rows: [
+						{view: "combo", id: "warehouse", label: "Склад", options: warehouses_data, value: 0},
+						{view: "radio", id: "box_type", label: "Тип упаковки", labelPosition: "left", options:
+							[
+								{id: "1", value:"Короба"}, 
+								{id: "2", value:"Монопаллеты"}, 
+							],
+							value:"1"
+						},
+						{view: "counter", id: "coefficient", label: "Коэфф, <=", value: 0, min: 0, max: 20, step: 1},
+						{
+							view:"datepicker",
+							id:"date_from",
+							label:"Дата с",
+							// stringResult:true,
+							value:new Date(2010,4,3)
+						},
+						{
+							view:"datepicker",
+							id:"date_to",
+							label:"Дата по",
+							// stringResult:true,
+							value:new Date(2010,4,3)
+						},
+						{ 
+							view:"button", value:"Создать поиск слота",
+							on:{
+								onItemClick:function(){
+									var warehouse = $$("warehouse").getValues();
+									window.Telegram.WebApp.sendData(JSON.stringify(warehouse));	
+								}
+							}
+						}
+						
 					]},
 				  ]
 				});
@@ -48,5 +59,3 @@
         </script>
     </body>
 </html>
-
-
