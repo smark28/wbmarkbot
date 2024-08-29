@@ -8,6 +8,8 @@
     <body>
         <script type="text/javascript" charset="utf-8">
 			webix.ready(function(){
+				let tg = window.Telegram.WebApp;
+				
 				var warehouses_data = [
 				  {id: 1, value: "Item 1"},
 				  {id: 2, value: "Item 2"},
@@ -46,8 +48,15 @@
 							view:"button", value:"Создать поиск слота",
 							on:{
 								onItemClick:function(){
-									var warehouse = $$("warehouse").getValues();
-									window.Telegram.WebApp.sendData(JSON.stringify(warehouse));	
+								    let data = {
+										warehouse: $$("warehouse").getValues(),
+										box_type: $$("box_type").getValues(),    
+										coefficient: $$("coefficient").getValues(),
+										date_from: $$("date_from").getValues(),
+										date_to: $$("date_to").getValues()
+									}
+									tg.sendData(JSON.stringify(data));
+									tg.close();
 								}
 							}
 						}
