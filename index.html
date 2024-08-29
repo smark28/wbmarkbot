@@ -55,6 +55,7 @@
 										date_from: $$("date_from").getValues(),
 										date_to: $$("date_to").getValues()
 									}
+									webix.message("OnClick")
 									tg.sendData(JSON.stringify(data));
 									tg.close();
 								}
