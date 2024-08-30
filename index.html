@@ -48,6 +48,9 @@
 							view:"button", value:"Создать поиск слота",
 							on:{
 								onItemClick:function(){
+								    let init_data = tg.WebApp.initData;
+									webix.message(init_data)
+									
 								    let data = {
 										warehouse: $$("warehouse").getText(),
 										box_type: $$("box_type").getValue(),    
@@ -55,7 +58,6 @@
 										date_from: $$("date_from").getText(),
 										date_to: $$("date_to").getText()
 									}
-									webix.message(JSON.stringify(data))
 									tg.sendData(JSON.stringify(data));
 									tg.close();
 								}
