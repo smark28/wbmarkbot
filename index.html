@@ -11,9 +11,9 @@
 				let tg = window.Telegram.WebApp;
 				
 				var warehouses_data = [
-				  {id: '1', value: "Коледино"},
-				  {id: '2', value: "Краснодар (Тихорецкая)"},
-				  {id: '3', value: "СЦ Ростов-на-Дону"}
+				  {id: 1, value: "Item1"},
+				  {id: 2, value: "Item2"},
+				  {id: 3, value: "Item3"}
 				];
 
 				webix.ui({
@@ -24,8 +24,8 @@
 						{view: "combo", id: "warehouse", label: "Склад", options: warehouses_data, value: 0},
 						{view: "radio", id: "box_type", label: "Тип упаковки", labelPosition: "left", options:
 							[
-								{id: "Короба", value:"Короба"}, 
-								{id: "Монопаллеты", value:"Монопаллеты"}, 
+								{id: 1, value:"Короба"}, 
+								{id: 2, value:"Монопаллеты"}, 
 							],
 							value:"Короба"
 						},
