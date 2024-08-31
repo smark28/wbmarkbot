@@ -11,56 +11,57 @@
 				let tg = window.Telegram.WebApp;
 				
 				var warehouses_data = [
-				  {id: 'Коледино', value: "Коледино"},
-				  {id: 'Краснодар (Тихорецкая)', value: "Краснодар (Тихорецкая)"},
-				  {id: 'СЦ Ростов-на-Дону', value: "СЦ Ростов-на-Дону"}
+				  {id: '1', value: "Коледино"},
+				  {id: '2', value: "Краснодар (Тихорецкая)"},
+				  {id: '3', value: "СЦ Ростов-на-Дону"}
 				];
 
 				webix.ui({
-				  view:"form",
-				  elementsConfig: {labelWidth: 100},
-				  cols:[
-					{ rows: [
+					view:"form",
+					margin:10,
+					elementsConfig: {labelWidth: 100},
+					elements: [
 						{view: "combo", id: "warehouse", label: "Склад", options: warehouses_data, value: 0},
 						{view: "radio", id: "box_type", label: "Тип упаковки", labelPosition: "left", options:
 							[
-								{id: "1", value:"Короба"}, 
-								{id: "2", value:"Монопаллеты"}, 
+								{id: "Короба", value:"Короба"}, 
+								{id: "Монопаллеты", value:"Монопаллеты"}, 
 							],
-							value:"1"
+							value:"Короба"
 						},
 						{view: "counter", id: "coefficient", label: "Коэфф, <=", value: 0, min: 0, max: 20, step: 1},
 						{
 							view:"datepicker",
 							id:"date_from",
 							label:"Дата с",
-							value:new Date()
+							value:new Date(),
+							format: "%d.%m.%Y"
 						},
 						{
 							view:"datepicker",
 							id:"date_to",
 							label:"Дата по",
-							value:new Date()
+							value:new Date(),
+							format: "%d.%m.%Y"
 						},
 						{ 
 							view:"button", value:"Создать поиск приемки",
 							on:{
 								onItemClick:function(){
-								    let response = {
+								    let data = {
 										warehouse: $$("warehouse").getText(),
 										box_type: $$("box_type").getValue(),    
 										coefficient: $$("coefficient").getValue(),
 										date_from: $$("date_from").getText(),
 										date_to: $$("date_to").getText()
 									}
-									tg.sendData(JSON.stringify(response));
+									console.log(data)
+									tg.sendData(JSON.stringify(data));
 									tg.close();
 								}
 							}
-						}
-						
-					]},
-				  ]
+						}						
+					]
 				});
 			});
         </script>
