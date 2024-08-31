@@ -48,14 +48,14 @@
 							view:"button", value:"Создать поиск приемки",
 							on:{
 								onItemClick:function(){
-								    let data = {
+									let data = {
 										warehouse: $$("warehouse").getText(),
 										box_type: $$("box_type").getValue(),    
 										coefficient: $$("coefficient").getValue(),
 										date_from: $$("date_from").getText(),
-										date_to: $$("date_to").getText()
-									}
-									console.log(data)
+										date_to: $$("date_to").getText(),
+									};
+									console.log(data);
 									tg.sendData(JSON.stringify(data));
 									tg.close();
 								}
