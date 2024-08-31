@@ -11,9 +11,9 @@
 				let tg = window.Telegram.WebApp;
 				
 				var warehouses_data = [
-				  {id: 1, value: "Item 1"},
-				  {id: 2, value: "Item 2"},
-				  {id: 3, value: "Item 3"}
+				  {id: 'Коледино', value: "Коледино"},
+				  {id: 'Краснодар (Тихорецкая)', value: "Краснодар (Тихорецкая)"},
+				  {id: 'СЦ Ростов-на-Дону', value: "СЦ Ростов-на-Дону"}
 				];
 
 				webix.ui({
@@ -34,31 +34,26 @@
 							view:"datepicker",
 							id:"date_from",
 							label:"Дата с",
-							// stringResult:true,
-							value:new Date(2010,4,3)
+							value:new Date()
 						},
 						{
 							view:"datepicker",
 							id:"date_to",
 							label:"Дата по",
-							// stringResult:true,
-							value:new Date(2010,4,3)
+							value:new Date()
 						},
 						{ 
-							view:"button", value:"Создать поиск слота",
+							view:"button", value:"Создать поиск приемки",
 							on:{
 								onItemClick:function(){
-								    let init_data = tg.WebApp.initData;
-									webix.message(init_data)
-									
-								    let data = {
+								    let response = {
 										warehouse: $$("warehouse").getText(),
 										box_type: $$("box_type").getValue(),    
 										coefficient: $$("coefficient").getValue(),
 										date_from: $$("date_from").getText(),
 										date_to: $$("date_to").getText()
 									}
-									tg.sendData(JSON.stringify(data));
+									tg.sendData(JSON.stringify(response));
 									tg.close();
 								}
 							}
