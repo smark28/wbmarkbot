@@ -11,9 +11,9 @@
 				let tg = Telegram.WebApp;
 				
 				var warehouses_data = [
-				  {id: 1, value: "Item1"},
-				  {id: 2, value: "Item2"},
-				  {id: 3, value: "Item3"}
+				  {id: "Коледино", value: "Коледино"},					
+				  {id: "Краснодар (Тихорецкая)", value: "Краснодар (Тихорецкая)"},
+				  {id: "СЦ Ростов-на-Дону", value: "СЦ Ростов-на-Дону"}
 				];
 
 				webix.ui({
@@ -21,13 +21,13 @@
 					margin:10,
 					elementsConfig: {labelWidth: 100},
 					elements: [
-						{view: "combo", id: "warehouse", label: "Склад", options: warehouses_data, value: 0},
+						{view: "combo", id: "warehouse", label: "Склад", options: warehouses_data, value: "Коледино"},
 						{view: "radio", id: "box_type", label: "Тип упаковки", labelPosition: "left", options:
 							[
-								{id: 1, value:"Короба"}, 
-								{id: 2, value:"Монопаллеты"}, 
+								{id: "Короба", value:"Короба"}, 
+								{id: "Монопаллеты", value:"Монопаллеты"}, 
 							],
-							value:1
+							value: "Короба"
 						},
 						{view: "counter", id: "coefficient", label: "Коэфф, <=", value: 0, min: 0, max: 20, step: 1},
 						{
@@ -45,7 +45,7 @@
 							format: "%d.%m.%Y"
 						},
 						{ 
-							view:"button", value:"Создать поиск приемки",
+							view:"button", value:"Готово",
 							on:{
 								onItemClick:function(){
 									let data = {
@@ -60,7 +60,16 @@
 									tg.close();
 								}
 							}
+						},
+						{ 
+							view:"button", value:"Отмена",
+							on:{
+								onItemClick:function(){
+									tg.close();
+								}
+							}
 						}						
+						
 					]
 				});
 			});
